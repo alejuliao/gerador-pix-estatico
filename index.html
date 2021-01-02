@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Gerador QRCode PIX</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>Home</li>
+            <li>Gerador</li>
+            <li>Sobre</li>
+        </ul>
+    </nav>
+    
+    <main>
+        <!-- <div id="campos">
+
+            <div class="link">
+                <label for="">CPF</label>
+                <input type="text" name="cpf" id="cpf">
+                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
+            </div>
+            <div class="link">
+                <label for="">Celular</label>
+                <input type="text" name="celular" id="celular">
+                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
+            </div>
+            <div class="link">
+                <label for="">chave aleatória</label>
+                <input type="text" name="aleatoria" id="aleatoria">
+                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
+            </div>
+        </div> -->
+        <div id="campos">
+            
+            <div class="option">
+                
+                <!-- <div class="options">
+                    <input type="radio" id="cpf" name="chave" value="cpf" checked>
+                    <label for="cpf">CPF</label><br>
+                    <input type="radio" id="celular" name="chave" value="celular">
+                    <label for="celular">celular</label><br>
+                    <input type="radio" id="aleatoria" name="chave" value="aleatoria">
+                    <label for="aleatoria">Aleatória</label>
+                </div> -->
+
+                <input type="text" name="chavepix" id="chavepix" value="Valor a ser adicionado">
+
+                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
+            </div>
+
+            <!-- <div class="link">
+                
+                <select name="chave" id="chave">
+                    <option value="cpf">CPF</option>
+                    <option value="cpf">CPF</option>
+                    <option value="cpf">CPF</option>
+                </select>
+                <input type="text" name="chavepix" id="chavepix">
+
+                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
+            </div> -->
+        </div>
+            <div id='qrcode'></div>
+    </main>
+    
+    <script type="module" src="/app/pix/payload.js"></script>
+    <script type="module" src="/app.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</body>
+</html>
