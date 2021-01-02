@@ -8,12 +8,12 @@ let divQr = document.getElementById('qrcode')
 //https://www.bcb.gov.br/content/estabilidadefinanceira/spb_docs/ManualBRCode.pdf
 
 const objPayload = new Payload()
-objPayload.setPixKey('12345678900')
+objPayload.setPixKey('37249364863')
 objPayload.setDescription('descicao')
 objPayload.setMerchantName('alexandre julios')
 objPayload.setMerchantCity('sao PAulo')
 objPayload.setTxid('aleDev')
-objPayload.setAmount(100.45)
+objPayload.setAmount()
 
 
 // const teste = objPayload.getValue()
@@ -41,8 +41,9 @@ console.log(objPayload.getPayload())
 // const merchantcity = Payload.setMerchantCity('sao paulo')
 // divQr.innerHTML += merchantcity
 
-// const txid = Payload.setTxid('AleDEV')
+const txid = objPayload.getPayload()
 // divQr.innerHTML += txid
+new QRCode(divQr, {text:txid, width:300, height:300})
 
 // const amount = Payload.setAmount('100.00')
 // divQr.innerHTML += amount

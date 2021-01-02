@@ -28,6 +28,8 @@ export class Payload{
 
         this.id_addtional_data_field_template = '62';
         this.id_additional_data_field_template_txid = '05'
+
+        this.id_crc16 = '63';
         
 
 
@@ -95,13 +97,52 @@ export class Payload{
         + this.getMerchantAccountInformation()
         + this.getValue(this.id_merchant_category_code,'0000')
         + this.getValue(this.id_transaction_currency, '986')
-        + this.getValue(this.id_transaction_amount, '100.50 ')
+        + this.getValue(this.id_transaction_amount, '')
         + this.getValue(this.id_country_code, 'BR')
         + this.getValue(this.id_merchant_name, this.merchantName)
         + this.getValue(this.id_merchant_city, this.merchantCity)
         + this.getAdditionalDataFieldTemplate()
 
-        return this.payload
+        return this.payload + this.getCRC16(this.payload)
+    }
+    
+    getCRC16(){
+      var payload = this.id_crc16 + '04';
+
+      //DADOS DEFINIDOS PELO BACEN
+      var polinomio = 0x1021;
+      var resultado = 0xFFFF;
+
+      //CHECKSUM
+      if (length = payload.length > 0) {
+          for (let offset = 0; offset < length; offset++) {
+              resultado ^ (payload.charCodeAt[offset]<8)
+              for (let bitwise = 0; bitwise < 8; bitwise++) {
+                  if ((resultado <<= 1) & 0x10000) resultado ^ polinomio;
+                  resultado &= 0xFFFF;
+              }
+          }
+      }
+      function dechex (number) {
+        // http://jsphp.co/jsphp/fn/view/dechex
+        // +   original by: Philippe Baumann
+        // +   bugfixed by: Onno Marsman
+        // +   improved by: http://stackoverflow.com/questions/57803/how-to-convert-decimal-to-hex-in-javascript
+        // +   input by: pilus
+        // *     example 1: dechex(10);
+        // *     returns 1: 'a'
+        // *     example 2: dechex(47);
+        // *     returns 2: '2f'
+        // *     example 3: dechex(-1415723993);
+        // *     returns 3: 'ab9dc427'
+        if (number < 0) {
+            number = 0xFFFFFFFF + number + 1;
+        }
+        return parseInt(number, 10).toString(16);
+    }
+      //RETORNA CÓDIGO CRC16 DE 4 CARACTERES
+      return this.id_crc16+'04'+ payload.toUpperCase() + dechex(resultado)
+    //   .dechex();
     }
 
 }
