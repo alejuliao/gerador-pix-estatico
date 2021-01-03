@@ -1,15 +1,5 @@
-// export class MyClass(){
-//     constructor (){}
-
-
-//     method(){}
-//     method2(){}
-    
-// }
-
 export class Payload{
-    constructor(id_payload_format_indicator, merchant_account_information, id_merchant_account_information_gui){
-        // this.id_PAYLOAD_FORMAT_INDICATOR = '00';
+    constructor(){
         this.id_payload_format_indicator = '00';
         //merchant
         this.id_merchant_account_information = '26';
@@ -36,15 +26,15 @@ export class Payload{
 
 
 
-        this.pixkey = ''
-        this.description = '';
-        this.merchantName = ''
-        this.merchantCity = ''
-        this.txid = ''
-        this.amount = ''
-        this.payload = ''
+        // this.pixkey = ''
+        // this.description = '';
+        // this.merchantName = ''
+        // this.merchantCity = ''
+        // this.txid = ''
+        // this.amount = ''
+        // this.payload = ''
     }
-    // return console.log('a key digitada foi ' + key )
+    
     setPixKey(key){
         this.pixkey = key
         return key
@@ -142,7 +132,7 @@ export class Payload{
     }
       //RETORNA CÓDIGO CRC16 DE 4 CARACTERES
       return this.id_crc16+'04'+ payload.toUpperCase() + dechex(resultado)
-    //   .dechex();
+
     }
 
 }
