@@ -1,0 +1,5 @@
+//https://www.youtube.com/watch?v=eO11iFgrdCA
+//https://www.bcb.gov.br/content/estabilidadefinanceira/forumpireunioes/AnexoI-PadroesparaIniciacaodoPIX-versao3.0.1.pdf
+//https://www.bcb.gov.br/content/estabilidadefinanceira/forumpireunioes/Anexo%20IV%20-%20Manual%20de%20Seguranca%20PIX%20v2.0.pdf
+//https://blog.vindi.com.br/pix-qr-code/
+//https://www.bcb.gov.br/content/estabilidadefinanceira/spb_docs/ManualBRCode.pdf

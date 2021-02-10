@@ -48,11 +48,21 @@
                     <label for="aleatoria">Aleatória</label>
                 </div> -->
 
-                <input type="text" name="chavepix" id="chavepix" value="Valor a ser adicionado">
+                <form action="" onsubmit="Form.submit(event)">
 
-                <button id="gerador" onclick='gerarQrCode()'>GERAR</button>
-            </div>
-
+                    <input 
+                    type="text" 
+                    name="chavepix" 
+                    id="chavepix" 
+                    placeholder="Valor a ser adicionado"/>
+                    
+                    <!-- <button>GERAR</button> -->
+                    <button id="button">GERAR</button>
+                </div>
+                <input id="linhaCodigo" ></input>
+                <p id="log"></p>
+            </form>
+                
             <!-- <div class="link">
                 
                 <select name="chave" id="chave">
@@ -64,12 +74,19 @@
 
                 <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
             </div> -->
-        </div>
+        </input>
             <div id='qrcode'></div>
     </main>
     
-    <script type="module" src="/app/pix/payload.js"></script>
-    <script type="module" src="/app.js"></script>
+    
+    <script  src="script.js"> </script>
+    <script  src="qrcode.js" type="module"> </script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <!-- <script  src="script.js" ></script> -->
+    <!-- <script src="script.js"></script> -->
+
+
+    <!-- <script src="app.js"></script>
+    <script type="module" src="pix/payload.js"></script> -->
 </body>
 </html>
