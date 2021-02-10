@@ -42,3 +42,9 @@ main{
     height: 300px;
     border: 1px solid tomato;
 }
+#linhaCodigo{
+    max-width: 300px;
+    word-break: break-all;
+    text-align: center;
+    border: 1px solid tomato;
+}

@@ -1,25 +1,27 @@
-export class Payload{
-    constructor(){
-        this.id_payload_format_indicator = '00';
+// PAYLOAD  JS #####################
+const Payload = {
+    // constructor(){
+        // this.id_PAYLOAD_FORMAT_INDICATOR = '00';
+        id_payload_format_indicator : '00',
         //merchant
-        this.id_merchant_account_information = '26';
-        this.id_merchant_account_information_gui = '00';
-        this.id_merchant_account_information_key = '01';
-        this.id_merchant_account_information_description  = '02';
+        id_merchant_account_information : '26',
+        id_merchant_account_information_gui : '00',
+        id_merchant_account_information_key : '01',
+        id_merchant_account_information_description  : '02',
 
-        this.id_merchant_category_code = '52';
-        this.id_transaction_currency = '53';
-        this. id_transaction_amount = '54'; 
+        id_merchant_category_code : '52',
+        id_transaction_currency : '53',
+        id_transaction_amount : '54', 
 
-        this.id_country_code = '58';
+        id_country_code : '58',
 
-        this.id_merchant_name = '59';
-        this.id_merchant_city = '60';
+        id_merchant_name : '59',
+        id_merchant_city : '60',
 
-        this.id_addtional_data_field_template = '62';
-        this.id_additional_data_field_template_txid = '05'
+        id_addtional_data_field_template : '62',
+        id_additional_data_field_template_txid : '05',
 
-        this.id_crc16 = '63';
+        id_crc16 : '63',
         
 
 
@@ -33,32 +35,32 @@ export class Payload{
         // this.txid = ''
         // this.amount = ''
         // this.payload = ''
-    }
-    
+    // },
+    // return console.log('a key digitada foi ' + key )
     setPixKey(key){
         this.pixkey = key
         return key
-    }
+    },
     setDescription(description){
         this.description = description
         return description
-    }
+    },
     setMerchantName(merchantName){
         this.merchantName = merchantName
         return merchantName
-    }
+    },
     setMerchantCity(merchantCity){
         this.merchantCity = merchantCity
         return merchantCity
-    }
+    },
     setTxid(txid){
         this.txid = txid
         return txid
-    }
+    },
     setAmount(amount){
         this.amount = amount
         return amount
-    }
+    },
 
 
     getValue(id,value){
@@ -68,19 +70,19 @@ export class Payload{
             size = '0'+ size
         }
         return id+size+value
-    }
+    },
 
     getMerchantAccountInformation(gui, key, description){
         gui = this.getValue(this.id_merchant_account_information_gui, 'br.gov.bcb.pix ')
         key = this.getValue(this.id_merchant_account_information_key, this.pixkey)
         description = this.getValue(this.id_merchant_account_information_description, this.description )
         return this.getValue(this.id_merchant_account_information, (gui+key+description))
-    }
+    },
 
     getAdditionalDataFieldTemplate(){
          var txid = this.getValue(this.id_additional_data_field_template_txid, this.txid)
          return this.getValue(this.id_additional_data_field_template_txid, txid)
-    }
+    },
     
     getPayload(){
         this.payload = this.getValue(this.id_payload_format_indicator, '01') 
@@ -94,7 +96,7 @@ export class Payload{
         + this.getAdditionalDataFieldTemplate()
 
         return this.payload + this.getCRC16(this.payload)
-    }
+    },
     
     getCRC16(){
       var payload = this.id_crc16 + '04';
@@ -132,9 +134,71 @@ export class Payload{
     }
       //RETORNA CÓDIGO CRC16 DE 4 CARACTERES
       return this.id_crc16+'04'+ payload.toUpperCase() + dechex(resultado)
-
+    //   .dechex();
     }
 
 }
 
-export default Payload;
+// APP JS #################################
+
+const objPayload = Payload
+
+objPayload.setPixKey('')
+objPayload.setDescription('')
+objPayload.setMerchantName('')
+objPayload.setMerchantCity('')
+objPayload.setTxid('')
+objPayload.setAmount()
+
+
+const Form ={ 
+    submit(event){
+        event.preventDefault()
+        console.log('submit')
+        gerarCode.reload()
+    },
+    foi(event){
+        event.preventDefault()
+        console.log('foooi')
+    }
+}
+const gerarCode = {
+
+    init(){
+
+        const pix = objPayload.getPayload()
+
+        document
+            .getElementById('linhaCodigo')
+            .value =  pix
+    },
+    reload(){
+        // objPayload.setPixKey('')
+        const chavePix = objPayload.setPixKey(document.getElementById('chavepix').value)
+
+        objPayload.setDescription('')
+
+        objPayload.setMerchantName('')
+
+        objPayload.setMerchantCity('')
+
+        objPayload.setTxid('')
+
+        objPayload.setAmount()
+
+        console.log('reload')
+
+        console.log('chave foi', objPayload.setPixKey(chavePix))
+        const pix = objPayload.getPayload()
+        console.log(pix)
+
+        document
+            .getElementById('linhaCodigo')
+            .value =  pix
+
+    }
+}
+
+gerarCode.init()
+
+
