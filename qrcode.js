@@ -1,5 +1,5 @@
 
-// Codigo funcionando, no segundo click 
+// Codigo funcionando, no click 
 function gqcode(){
     document.getElementById('linhaCodigo').style.display = "none"
 
@@ -13,10 +13,6 @@ function gqcode(){
             const code = new QRCode(divQr, {text:txid, width:300, height:300})
     })
 }
-//Codigo funcionando, no segundo click 
-
-
-gqcode()
-
+//Codigo funcionando, no click 
 
 

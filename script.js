@@ -143,6 +143,7 @@ const Payload = {
 
 const objPayload = Payload
 
+
 objPayload.setPixKey('')
 objPayload.setDescription('')
 objPayload.setMerchantName('')
@@ -151,50 +152,41 @@ objPayload.setTxid('')
 objPayload.setAmount()
 
 
+
 const Form ={ 
+    // inputChavePix: document.getElementById('chavepix').value,
+    
+    
+    // getValues(){
+    //     return{
+    //         inputChavePix: Form.inputChavePix.value,
+    //     }
+    // },
+
     submit(event){
-        event.preventDefault()
-        console.log('submit')
+        event.preventDefault() 
+        // console.log('submit')
+        
+        gerarCode.init()
         gerarCode.reload()
-    },
-    foi(event){
-        event.preventDefault()
-        console.log('foooi')
     }
 }
 const gerarCode = {
 
     init(){
-
+        // objPayload.setPixKey(document.getElementById('chavepix').value)
+   
         const pix = objPayload.getPayload()
 
-        document
-            .getElementById('linhaCodigo')
-            .value =  pix
+        document.getElementById('linhaCodigo').textContent =  pix
     },
+
     reload(){
-        // objPayload.setPixKey('')
-        const chavePix = objPayload.setPixKey(document.getElementById('chavepix').value)
+        objPayload.setPixKey(document.getElementById('chavepix').value)
 
-        objPayload.setDescription('')
-
-        objPayload.setMerchantName('')
-
-        objPayload.setMerchantCity('')
-
-        objPayload.setTxid('')
-
-        objPayload.setAmount()
-
-        console.log('reload')
-
-        console.log('chave foi', objPayload.setPixKey(chavePix))
         const pix = objPayload.getPayload()
-        console.log(pix)
 
-        document
-            .getElementById('linhaCodigo')
-            .value =  pix
+        document.getElementById('linhaCodigo').textContent =  pix
 
     }
 }
