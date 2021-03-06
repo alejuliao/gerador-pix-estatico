@@ -1,50 +1,123 @@
-*{
-    box-sizing: border-box;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+* {
+  box-sizing: border-box;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
-ul{
-    display: flex;
-    justify-content: center;
+html{
+    background: rgba(201, 188, 185, 0.1) ;
 }
-li{
-    padding: 1rem 2.6rem;
-    text-decoration: none;
-    list-style: none;
+a {
+  text-decoration: none;
+  color: black;
 }
-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+body{
+  margin: auto;
+  max-width: 300px;
 }
-.options{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid red ;
+
+ul {
+  display: flex;
+  
 }
-#campos{
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
+ul li {
+  width: 10rem;
+  padding: 1rem 2.6rem;
+
+  background: rgba(201, 188, 185, 0.15);
+  font-size: 1.4em;
+  color: black;
+
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
 }
-.link{
-    margin: 5px 0;
+ul li:hover {
+  background: rgba(201, 188, 185, 0.5);
 }
-.link input{
-    width: 200px;
+
+form {
+  font-size: 1rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+form .option small{
+  align-self: flex-start;
+  font-size: .7rem;
+  color: gray;
+  padding: 0px;
+  margin: 0px;
+}
+form .option select {
+  align-self: stretch;
+
+}
+form p{
+  align-self: flex-start;
+  margin: 1rem 0 .5rem;
+  font-size: 1.3rem;
+}
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.option select{
+  font-size: .9rem;
+  
+  padding: .3rem;
+  border-radius: .5rem;
+  
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+div.input {
+  margin-bottom: 24px;
+  position: relative;
+}
+input,button {
+  /* reset appeareance */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* box */
+  width: 100%;
+
+  padding: .4rem 0;
+  margin: .8rem;
+
+  border:none;
+  border-bottom: 1px solid gray;
+
+  background-color: transparent;
+
+  outline: none;
+
+  /* text */
+  font-size: 1em;
+}
+button{
+  background: rgb(97, 197, 109);
+}
+
+
+
 #qrcode {
-    margin-top: 2rem;
-    width: 300px;
-    height: 300px;
-    border: 1px solid tomato;
+  margin-top: 1rem;
+  width: 300px;
+  height: 300px;
+  border: 1px solid tomato;
 }
-#linhaCodigo{
-    max-width: 300px;
-    word-break: break-all;
-    text-align: center;
-    border: 1px solid tomato;
+
+
+#linhaCodigo {
+  margin-top: 10px;
+  max-width: 300px;
+  word-break: break-all;
+  text-align: center;
+  border: 1px solid tomato;
 }
