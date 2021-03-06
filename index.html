@@ -1,92 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
+
     <title>Gerador QRCode PIX</title>
 </head>
+
 <body>
     <nav>
         <ul>
-            <li>Home</li>
-            <li>Gerador</li>
-            <li>Sobre</li>
+            <li><a href="#">Gerador</a></li>
+            <li><a href="#">Sobre</a></li>
         </ul>
     </nav>
-    
+
     <main>
-        <!-- <div id="campos">
+        <form action="" onsubmit="Form.submit(event)">
+        
+                <div class="option">
 
-            <div class="link">
-                <label for="">CPF</label>
-                <input type="text" name="cpf" id="cpf">
-                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
-            </div>
-            <div class="link">
-                <label for="">Celular</label>
-                <input type="text" name="celular" id="celular">
-                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
-            </div>
-            <div class="link">
-                <label for="">chave aleatória</label>
-                <input type="text" name="aleatoria" id="aleatoria">
-                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
-            </div>
-        </div> -->
-        <div id="campos">
-            
-            <div class="option">
-                
-                <!-- <div class="options">
-                    <input type="radio" id="cpf" name="chave" value="cpf" checked>
-                    <label for="cpf">CPF</label><br>
-                    <input type="radio" id="celular" name="chave" value="celular">
-                    <label for="celular">celular</label><br>
-                    <input type="radio" id="aleatoria" name="chave" value="aleatoria">
-                    <label for="aleatoria">Aleatória</label>
-                </div> -->
+                        <small>Chave PIX</small>
+                        <select id="options" onchange="validation()">
+                            <option selected>Selecione</option>
+                            <option id="cpf" name="chave" value="cpf">
+                                <label for="cpf">CPF:</label>
 
-                <form action="" onsubmit="Form.submit(event)">
+                            <option id="celular" name="chave" value="celular">
+                                <label for="celular">Celular:</label>
 
-                    <input 
-                    type="text" 
-                    name="chavepix" 
-                    id="chavepix" 
-                    placeholder="Valor a ser adicionado"/>
-                    
-                    <!-- <button>GERAR</button> -->
-                    <button id="button">GERAR</button>
+                            <option id="aleatoria" name="chave" value="aleatoria">
+                                <label for="aleatoria">Aleatória:</label>
+                        </select>
+
+                        <input type="text" name="chavepix" id="chavepix" placeholder="Digite a chave Pix" autocomplete="off"
+                            required />
+                        <span class="error"></span>
+
+                        <p>Informações opcionais</p>
+
+                      
+                        <input type="text" name="merchant" id="merchant" placeholder="Identificador"/>
+                        <span class="error"></span>
+                      
+
+                        <input type="text" name="description" id="description" placeholder="Descrição" autocomplete="off" />
+                        <span class="error"></span>
+
+                        <input type="number" name="amount" id="amount" placeholder="0,00"/>
+                        <span class="error"></span>
+
+
+                        <!-- <button>GERAR</button> -->
+                        <button id="button">GERAR</button>
                 </div>
-                <input id="linhaCodigo" ></input>
-                <p id="log"></p>
-            </form>
-                
-            <!-- <div class="link">
-                
-                <select name="chave" id="chave">
-                    <option value="cpf">CPF</option>
-                    <option value="cpf">CPF</option>
-                    <option value="cpf">CPF</option>
-                </select>
-                <input type="text" name="chavepix" id="chavepix">
 
-                <button id="gerador" onclick='gerarQRCode()'>GERAR</button>
-            </div> -->
-        </input>
-            <div id='qrcode'></div>
+                <div id='qrcode'></div>
+                <div id="linhaCodigo"></div>
+            <!-- <p id="log"></p> -->
+        </form>
+
+            
+
     </main>
-    
-    
-    <script  src="script.js"> </script>
-    <script  src="qrcode.js" type="module"> </script>
+
+
+    <script src="script.js"> </script>
+
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <!-- <script  src="script.js" ></script> -->
-    <!-- <script src="script.js"></script> -->
+
 
 
     <!-- <script src="app.js"></script>
     <script type="module" src="pix/payload.js"></script> -->
 </body>
+
 </html>
