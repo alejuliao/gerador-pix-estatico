@@ -168,19 +168,18 @@ const validation = () => {
 
   if (typePix === "cpf") {
     insertKey.addEventListener("keyup", (e) => {
-      // console.log(e.target.value)
       e.target.value = mask.cpf(e.target.value);
     });
+
   } else if (typePix === "celular") {
     insertKey.addEventListener("keyup", (e) => {
-      // console.log(e.target.value)
       e.target.value = mask.cel(e.target.value);
     });
+
+    // return console.log(pixFinal)
   } else if (typePix === "aleatoria") {
   }
 };
-
-validation();
 
 // APP JS #################################
 
@@ -213,7 +212,10 @@ const codePix = () => {
   
   const pixkey = document.getElementById("chavepix").value;
 
+  
+
   const formatedValue = mask.formatValue(pixkey);
+  // const formatedValue = '+55'+mask.formatValue(pixkey);
 
   objPayload.setPixKey(formatedValue);
 
@@ -226,8 +228,16 @@ const codePix = () => {
 
 const createQrCode = () => {
   const {linhaDeCodigo} = mask
+
   const divQr = document.getElementById("qrcode");
   divQr.innerHTML = "";
   const pix = linhaDeCodigo.textContent;
   const code = new QRCode(divQr, { text: pix, width: 300, height: 300 });
 };
+
+const App = {
+  init(){
+    validation()
+  }
+}
+App.init()
