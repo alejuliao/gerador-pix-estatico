@@ -134,65 +134,88 @@ const Payload = {
   },
 };
 
+const mask = {
+   insertKey: document.getElementById("chavepix"),
+   linhaDeCodigo: document.getElementById("linhaCodigo"),
 
-const validation = () =>{
-    var select = document.getElementById('options');
-    
-    var typePix = select.options[select.selectedIndex].id;
-
-    
-    const pixkey = document.getElementById("chavepix");
-    pixkey.value = ''
-    if(typePix === 'cpf'){
-        pixkey.setAttribute("maxlength", 11)
-        
-    }else if(typePix === 'celular'){
-        pixkey.setAttribute("maxlength", 15)
-        pixkey.value += '+55'
-    }else if(typePix === 'aleatoria'){
-        
-    }
-
-}
-
-
-
-
-// APP JS #################################
-
-
-
-
-const objPayload = Payload;
-
-const informations = () => {    
-    const merchant = document.getElementById('merchant').value;
-    const description = document.getElementById('description').value;
-    const amount = document.getElementById('amount').value;
-    objPayload.setPixKey("");
-    objPayload.setMerchantName(merchant);
-    objPayload.setDescription(description);
-    objPayload.setMerchantCity("");
-    objPayload.setTxid("");
-    objPayload.setAmount(amount);
-
-}
-
-
-const Form = {
-    submit(event) {
-        event.preventDefault();
-        informations()
-        codePix();
+  cpf(value) {
+    // console.log(value)
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+      .replace(/(-\d{2})\d+?$/, "$1");
+    //  .replace('3', '1')
+  },
+  cel(value) {
+    return value
+      .replace(/\D/g, "")
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d)/, "$1-$2")
+      .replace(/(-\d{4})\d+?$/, "$1");
+  },
+  formatValue(value) {
+    return value.replace(/\D/g, "");
   },
 };
 
-var linhaDeCodigo = document.getElementById("linhaCodigo");
+const validation = () => {
+  const select = document.getElementById("options");
+  const typePix = select.options[select.selectedIndex].id;
+
+  const {insertKey} = mask
+
+  if (typePix === "cpf") {
+    insertKey.addEventListener("keyup", (e) => {
+      // console.log(e.target.value)
+      e.target.value = mask.cpf(e.target.value);
+    });
+  } else if (typePix === "celular") {
+    insertKey.addEventListener("keyup", (e) => {
+      // console.log(e.target.value)
+      e.target.value = mask.cel(e.target.value);
+    });
+  } else if (typePix === "aleatoria") {
+  }
+};
+
+validation();
+
+// APP JS #################################
+
+const objPayload = Payload;
+
+const informations = () => {
+  const merchant = document.getElementById("merchant").value;
+  const description = document.getElementById("description").value;
+  const amount = document.getElementById("amount").value;
+  // objPayload.setPixKey(""); ??
+  objPayload.setMerchantName(merchant);
+  objPayload.setDescription(description);
+  objPayload.setMerchantCity("");
+  objPayload.setTxid("");
+  objPayload.setAmount(amount);
+};
+
+const Form = {
+  submit(event) {
+    event.preventDefault();
+      informations();
+      codePix();
+  },
+};
+
+
 
 const codePix = () => {
+  const {linhaDeCodigo} = mask
+  
   const pixkey = document.getElementById("chavepix").value;
 
-  objPayload.setPixKey(pixkey);
+  const formatedValue = mask.formatValue(pixkey);
+
+  objPayload.setPixKey(formatedValue);
 
   const pix = objPayload.getPayload();
 
@@ -202,11 +225,9 @@ const codePix = () => {
 };
 
 const createQrCode = () => {
+  const {linhaDeCodigo} = mask
   const divQr = document.getElementById("qrcode");
   divQr.innerHTML = "";
   const pix = linhaDeCodigo.textContent;
   const code = new QRCode(divQr, { text: pix, width: 300, height: 300 });
 };
-
-
-
