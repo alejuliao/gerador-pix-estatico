@@ -15,26 +15,6 @@ body{
   max-width: 300px;
 }
 
-ul {
-  display: flex;
-  
-}
-ul li {
-  width: 10rem;
-  padding: 1rem 2.6rem;
-
-  background: rgba(201, 188, 185, 0.15);
-  font-size: 1.4em;
-  color: black;
-
-  text-decoration: none;
-  list-style: none;
-  cursor: pointer;
-}
-ul li:hover {
-  background: rgba(201, 188, 185, 0.5);
-}
-
 form {
   font-size: 1rem;
   margin-top: 2rem;
