@@ -133,10 +133,10 @@ const Payload = {
     //   .dechex();
   },
 };
-// PAYLOAD  JS #####################
+
 const mask = {
    insertKey: document.getElementById("chavepix"),
-   linhaDeCodigo: document.getElementById("linhaCodigo"),
+   lineCode: document.getElementById("lineCode"),
  
   cpf(value) {
     return value
@@ -202,7 +202,7 @@ const Form = {
 
 const Code = {
   createLine(){
-    const {linhaDeCodigo} = mask
+    const {lineCode} = mask
     const pixkey = document.getElementById("chavepix").value;
   
     const formatedValue = mask.formatValueCPF(pixkey);
@@ -210,15 +210,14 @@ const Code = {
     Payload.setPixKey(formatedValue);
 
     const pix = Payload.getPayload();
-    linhaDeCodigo.innerHTML = pix; 
+    lineCode.innerHTML = pix; 
   },
   createNewQRCODE(){
-    const {linhaDeCodigo} = mask
+    const {lineCode} = mask
     const divQr = document.getElementById("qrcode");
     divQr.innerHTML = "";
-    const code = new QRCode(divQr, { text: linhaDeCodigo.textContent, width: 300, height: 300 });
+    const code = new QRCode(divQr, { text: lineCode.textContent, width: 300, height: 300 });
   }
 }
-
 
 mask.validation()
