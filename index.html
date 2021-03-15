@@ -1,75 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
 
-    <title>Gerador QRCode PIX</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 
-  <body>
-    <main>
-      <form action="" onsubmit="Form.submit(event)">
-        <div class="option">
-          <small>Chave PIX</small>
-          <select id="options" onchange="mask.validation()">
-            <option selected>Selecione</option>
-            <option id="cpf" name="chave" value="cpf">
-              <label for="cpf">CPF:</label>
-            </option>
+  <title>Gerador QRCode PIX</title>
+</head>
 
-            <option id="celular" name="chave" value="celular">
-              <label for="celular">Celular:</label>
-            </option>
+<body>
+  <main>
+    <form action="" onsubmit="Form.submit(event)">
+      <div class="option">
+        <small>Chave PIX</small>
+        <select id="options" onchange="mask.validation()">
+          <option selected>Selecione</option>
+          <option id="cpf" name="chave" value="cpf">
+            <label for="cpf">CPF:</label>
+          </option>
 
-            <option id="aleatoria" name="chave" value="aleatoria">
-              <label for="aleatoria">Aleatória:</label>
-            </option>
-          </select>
+          <option id="celular" name="chave" value="celular">
+            <label for="celular">Celular:</label>
+          </option>
 
-          <input
-            type="text"
-            name="chavepix"
-            id="chavepix"
-            placeholder="Digite a chave Pix"
-            autocomplete="off"
-            required
-          />
-          <span class="error"></span>
+          <option id="aleatoria" name="chave" value="aleatoria">
+            <label for="aleatoria">Aleatória:</label>
+          </option>
+        </select>
 
-          <p>Informações opcionais</p>
+        <input type="text" name="chavepix" id="chavepix" autocomplete="off" required />
+        <span class="error"></span>
 
-          <input
-            type="text"
-            name="merchant"
-            id="merchant"
-            placeholder="Identificador"
-          />
-          <span class="error"></span>
+        <p>Informações opcionais</p>
 
-          <input
-            type="text"
-            name="description"
-            id="description"
-            placeholder="Descrição"
-            autocomplete="off"
-          />
-          <span class="error"></span>
+        <input type="text" name="merchant" id="merchant" placeholder="Identificador" />
+        <span class="error"></span>
 
-          <input type="number" name="amount" id="amount" placeholder="0,00" />
-          <span class="error"></span>
+        <input type="text" name="description" id="description" placeholder="Descrição" autocomplete="off" />
+        <span class="error"></span>
 
-          <button id="button">GERAR</button>
-        </div>
+        <input type="number" name="amount" id="amount" placeholder="0,00" />
+        <span class="error"></span>
 
-        <div id="qrcode"></div>
-        <div id="linhaCodigo"></div>
-      </form>
-    </main>
+        <button id="button">GERAR</button>
+      </div>
 
-    <script src="script.js"></script>
+      <div id="qrcode"></div>
+      <div id="lineCode"></div>
+    </form>
+  </main>
 
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-  </body>
+  <script src="script.js"></script>
+
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</body>
+
 </html>

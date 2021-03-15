@@ -133,20 +133,18 @@ const Payload = {
     //   .dechex();
   },
 };
-
+// PAYLOAD  JS #####################
 const mask = {
    insertKey: document.getElementById("chavepix"),
    linhaDeCodigo: document.getElementById("linhaCodigo"),
-
+ 
   cpf(value) {
-    // console.log(value)
     return value
       .replace(/\D/g, "")
       .replace(/(\d{3})(\d)/, "$1.$2")
       .replace(/(\d{3})(\d)/, "$1.$2")
       .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-      .replace(/(-\d{2})\d+?$/, "$1");
-    //  .replace('3', '1')
+      .replace(/(-\d{2})\d+?$/, "$1");  
   },
   cel(value) {
     return value
@@ -155,89 +153,72 @@ const mask = {
       .replace(/(\d{5})(\d)/, "$1-$2")
       .replace(/(-\d{4})\d+?$/, "$1");
   },
-  formatValue(value) {
+  formatValueCPF(value) {
     return value.replace(/\D/g, "");
   },
-};
-
-const validation = () => {
-  const select = document.getElementById("options");
-  const typePix = select.options[select.selectedIndex].id;
-
-  const {insertKey} = mask
-
-  if (typePix === "cpf") {
-    insertKey.addEventListener("keyup", (e) => {
-      e.target.value = mask.cpf(e.target.value);
-    });
-
-  } else if (typePix === "celular") {
-    insertKey.addEventListener("keyup", (e) => {
-      e.target.value = mask.cel(e.target.value);
-    });
-
-    // return console.log(pixFinal)
-  } else if (typePix === "aleatoria") {
+  formatValueCelular(value) {
+    return '+55'+value.replace(/\D/g, "");
+  },
+    validation(){
+    const select = document.getElementById("options");
+    const typePix = select.options[select.selectedIndex].id;
+  
+    if (typePix === "cpf") {
+      mask.insertKey.addEventListener("keyup", (e) => {
+        e.target.value = mask.cpf(e.target.value);
+      });
+  
+    } else if (typePix === "celular") {
+      mask.insertKey.addEventListener("keyup", (e) => {
+        e.target.value = mask.cel(e.target.value);
+      });
+    } 
   }
 };
 
-// APP JS #################################
-
-const objPayload = Payload;
-
-const informations = () => {
-  const merchant = document.getElementById("merchant").value;
-  const description = document.getElementById("description").value;
-  const amount = document.getElementById("amount").value;
-  // objPayload.setPixKey(""); ??
-  objPayload.setMerchantName(merchant);
-  objPayload.setDescription(description);
-  objPayload.setMerchantCity("");
-  objPayload.setTxid("");
-  objPayload.setAmount(amount);
-};
 
 const Form = {
+  getInformations (merchant, description, amount) {
+    merchant = document.getElementById("merchant").value;
+    description = document.getElementById("description").value;
+    amount = document.getElementById("amount").value;
+
+    Payload.setMerchantName(merchant);
+    Payload.setDescription(description);
+    Payload.setMerchantCity('');
+    Payload.setTxid('');
+    Payload.setAmount(amount);
+  },
   submit(event) {
     event.preventDefault();
-      informations();
-      codePix();
+
+      Form.getInformations();
+
+      Code.createLine();
+
+      Code.createNewQRCODE(); 
   },
 };
 
-
-
-const codePix = () => {
-  const {linhaDeCodigo} = mask
+const Code = {
+  createLine(){
+    const {linhaDeCodigo} = mask
+    const pixkey = document.getElementById("chavepix").value;
   
-  const pixkey = document.getElementById("chavepix").value;
+    const formatedValue = mask.formatValueCPF(pixkey);
 
-  
+    Payload.setPixKey(formatedValue);
 
-  const formatedValue = mask.formatValue(pixkey);
-  // const formatedValue = '+55'+mask.formatValue(pixkey);
-
-  objPayload.setPixKey(formatedValue);
-
-  const pix = objPayload.getPayload();
-
-  linhaDeCodigo.innerHTML = pix;
-
-  createQrCode();
-};
-
-const createQrCode = () => {
-  const {linhaDeCodigo} = mask
-
-  const divQr = document.getElementById("qrcode");
-  divQr.innerHTML = "";
-  const pix = linhaDeCodigo.textContent;
-  const code = new QRCode(divQr, { text: pix, width: 300, height: 300 });
-};
-
-const App = {
-  init(){
-    validation()
+    const pix = Payload.getPayload();
+    linhaDeCodigo.innerHTML = pix; 
+  },
+  createNewQRCODE(){
+    const {linhaDeCodigo} = mask
+    const divQr = document.getElementById("qrcode");
+    divQr.innerHTML = "";
+    const code = new QRCode(divQr, { text: linhaDeCodigo.textContent, width: 300, height: 300 });
   }
 }
-App.init()
+
+
+mask.validation()
