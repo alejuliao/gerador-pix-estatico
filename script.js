@@ -47,7 +47,6 @@ const Payload = {
   },
 
   getValue(id, value) {
-    //fazer o calculo para contar os caracteres, se for menor que 2 adicionar o zero antes
     var size = value.length;
     if (size < 10) {
       size = "0" + size;
@@ -101,7 +100,6 @@ const Payload = {
     var polinomio = 0x1021;
     var resultado = 0xffff;
 
-    //CHECKSUM
     if ((length = payload.length > 0)) {
       for (let offset = 0; offset < length; offset++) {
         resultado ^ (payload.charCodeAt[offset] < 8);
@@ -111,6 +109,7 @@ const Payload = {
         }
       }
     }
+    
     function dechex(number) {
       // http://jsphp.co/jsphp/fn/view/dechex
       // +   original by: Philippe Baumann
@@ -130,7 +129,6 @@ const Payload = {
     }
     //RETORNA CÓDIGO CRC16 DE 4 CARACTERES
     return this.id_crc16 + "04" + payload.toUpperCase() + dechex(resultado);
-    //   .dechex();
   },
 };
 

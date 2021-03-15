@@ -9,19 +9,58 @@
     <img alt="Feito por Ale Julião" src="https://img.shields.io/badge/feito%20por-Ale%20Julião%20-%237519C1">
   </a>
 </p>
-# Gerador QrCode Pix
+
+
+## 💻 Sobre o projeto
+
+
+- É uma aplicação que gera QRCode/Código para pagamento via PIX de acordo com a chave escolhida.
+
+- Projeto realizada com o javascript e outras tecnologias front end.
+
+
+
+
+---
+
+
+# Gerador QRCode Pix
  
-
-#Sobre o projeto
- Gerar QrCode estático paga pagamento bancário via Pix em JavaScript.
- Utilizado padrão QrCode fornecido pelo Banco Central
+ - Gerar QRCode estático paga pagamento bancário via Pix em JavaScript.
+ - Utilizado padrão QRCode fornecido pelo Banco Central
+ - Gerador de QRCode Utilizado. - [QRCodeJS](https://github.com/davidshimjs/qrcodejs) 
 ## Layout
+<p align="center">
+  <img alt="geradorPix" title="#geradorPix" src="layout.png" width="400px">
+</p>
 
+---
 
-# Tecnologias Utilizadas
-- HTML
-- CSS
-- JAVASCRIPT
+## 🚀 Como executar o projeto
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+#### 🧭 Rodando a aplicação
+
+```bash
+
+# Clone este repositório
+$ git clone git@github.com:alejuliao/gerador-pix-estatico.git
+
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd gerador-pix-estatico
+
+# Abra o arquivo index.html no seu navegador padrão e preencha
+# as informações, ao clicar em GERAR será criado seu QRCode para 
+# ser utilizado, ou a linha de código para pagamento via Pix de qualquer banco.
+
+```
+
+---
 
 ## Autor
 
@@ -40,4 +79,4 @@
 
 Este projeto esta sobe a licença [MIT](./LICENSE).
 
-Feito com ❤️ por Alexandre Julião 👋🏽 [Entre em contato!](https://www.linkedin.com/in/alexandrejuliao/)
+Feito com Alexandre Julião 👋 [Entre em contato!](https://www.linkedin.com/in/alexandrejuliao/)
