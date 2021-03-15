@@ -89,7 +89,11 @@ button {
   font-size: 1em;
 }
 button {
-  background: rgb(127, 145, 129);
+  background: rgb(112, 224, 125);
+  transition: background .2s;
+}
+button:hover {
+  background: rgb(64, 202, 80);
 }
 
 #qrcode {
